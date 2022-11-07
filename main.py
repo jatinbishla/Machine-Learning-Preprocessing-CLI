@@ -5,6 +5,7 @@ from download import Download
 from categorical import Categorical
 from feature_scaling import FeatureScaling
 
+
 class Preprocessor:
 
     bold_start = "\033[1m"
@@ -55,4 +56,48 @@ class Preprocessor:
         print(self.data)
 
     #Here starts the main function of the preprocessor
-    def 
+    def preprocessorMain(self):
+        self.removeTargetColumn()
+        
+        while(1):
+            print("\nTasks \U0001F447\n")
+            for task in self.tasks:
+                print(task)
+
+            while(1):
+                try:
+                    choice = int(input("\nWhat do you want to do? (press -1 to exit): "))
+                except ValueError:
+                    print("Integer value required. Try Again.....\U0001F974")
+                    continue
+                break
+
+            if choice == '-1':
+                exit()
+
+            #Here we will move the control to the DataDescription class.
+            elif choice == '1':
+                DataDescription(self.data).describe()
+            
+            #Here we will move the control to the Imputation class
+            elif choice == '2':
+                self.data = Imputation(self.data).imputer()
+
+            #Here we will move the control to the Categorical class
+            elif choice == '3':
+                self.data = Categorical(self.data).categoricalMain()
+
+            #Here we will move the control to the FeatureScaling class
+            elif choice == '4':
+                self.data = FeatureScaling(self.data).scaling()
+            
+            #Here we will move the control to the Download class
+            elif choice == '5':
+                Download(self.data).download()
+
+            else:
+                print("\nWrong integer value. Try Again....\U0001F974")
+
+obj = Preprocessor()
+
+obj.preprocessorMain()
