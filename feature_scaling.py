@@ -7,6 +7,7 @@ class FeatureScaling:
     bold_start = "\033[1m"
     bold_end = "\033[0;0m"
 
+
     # All the Tasks 
     tasks = [
         "\n1. Perform Normalization(MinMax Scaler)",
